@@ -1,116 +1,89 @@
-Agro Farm Platform
-=================
+﻿# Agro Farm Platform
 
-Agro Farm Platform is a Django-based backend application that demonstrates
-a complete cloud-native DevOps workflow using Docker, Kubernetes, Helm,
-GitHub Actions, and Prometheus monitoring.
+Agro Farm Platform is a Django-based backend application that demonstrates a complete cloud-native DevOps workflow using Docker, Kubernetes (Kind), Helm, GitHub Actions (GHCR), and Prometheus monitoring.
 
---------------------------------------------------
+---
 
-Tech Stack
-----------
+## Tech Stack
 
-Backend: Django (Python)
-Containerization: Docker
-Orchestration: Kubernetes (Kind)
-Packaging: Helm
-CI/CD: GitHub Actions (GHCR)
-Monitoring: Prometheus (ServiceMonitor)
+- Backend: Django (Python)
+- Containerization: Docker
+- Orchestration: Kubernetes (Kind)
+- Packaging: Helm
+- CI/CD: GitHub Actions (GHCR)
+- Monitoring: Prometheus (ServiceMonitor)
 
---------------------------------------------------
+---
 
-Project Structure
------------------
+## Project Structure
 
-agro-farm-platform
-- agro
-- config
-- charts/agro
-- monitoring
+agro-farm-platform/
+- agro/
+- config/
+- charts/agro/
+- monitoring/
   - agro-servicemonitor.yaml
-- docs
-  - screenshots
+- docs/
+  - screenshots/
 - Dockerfile
 - docker-compose.yml
 - entrypoint.sh
 - requirements.txt
 - README.md
 
---------------------------------------------------
+---
 
-Docker Usage
-------------
+## Quick Commands (Plain)
 
-Build image:
+Docker build:
 docker build -t agro-farm-platform .
 
-Run container:
+Docker run:
 docker run -p 8000:8000 agro-farm-platform
 
-Application URL:
-http://localhost:8000
-
---------------------------------------------------
-
-Kubernetes Deployment
----------------------
-
-Create cluster:
+Kind cluster:
 kind create cluster --name agro --config kind-config.yaml
 
-Install using Helm:
+Helm install:
 helm upgrade --install agro charts/agro -n agriculture --create-namespace
-
-Check pods:
-kubectl get pods -n agriculture
-
---------------------------------------------------
-
-Monitoring
-----------
 
 Apply ServiceMonitor:
 kubectl apply -f monitoring/agro-servicemonitor.yaml
 
---------------------------------------------------
+---
 
-Screenshots
------------
+## Screenshots
 
-Prometheus Targets
-docs/screenshots/prometheus-targets.jpg
+### Prometheus Targets
+![Prometheus Targets](docs/screenshots/prometheus-targets.jpg)
 
-Kubernetes Pods
-docs/screenshots/k8s-pods.jpg
+### Kubernetes Pods
+![Kubernetes Pods](docs/screenshots/k8s-pods.jpg)
 
-Helm Release
-docs/screenshots/helm-release.jpg
+### Helm Release
+![Helm Release](docs/screenshots/helm-release.jpg)
 
-ServiceMonitor
-docs/screenshots/service-monitor.jpg
+### ServiceMonitor Applied
+![ServiceMonitor](docs/screenshots/service-monitor.jpg)
 
-GitHub Actions Pipeline
-docs/screenshots/github-actions.jpg
+### GitHub Actions Pipeline
+![GitHub Actions](docs/screenshots/github-actions.jpg)
 
---------------------------------------------------
+---
 
-CI/CD
------
+## CI/CD
 
-GitHub Actions automatically builds and pushes Docker images
-to GitHub Container Registry on every push to main branch.
+GitHub Actions automatically builds and pushes Docker images to GitHub Container Registry (GHCR) when you push to the main branch.
 
---------------------------------------------------
+---
 
-Author
-------
+## Author
 
-Xusniya Turdiqulova
+Xusniya Turdiqulova  
 GitHub: https://github.com/xusniya
 
---------------------------------------------------
+---
 
-License
--------
+## License
 
 Educational and portfolio project.
