@@ -1,7 +1,8 @@
 ﻿#  Agro Farm Platform
 
-Agro Farm Platform is a **Django-based backend platform** that demonstrates a full
-**cloud-native DevOps workflow** using Docker, Kubernetes, Helm, and GitHub Actions.
+Agro Farm Platform is a **Django-based backend application** that demonstrates a
+complete **cloud-native DevOps workflow** using Docker, Kubernetes, Helm,
+GitHub Actions, and Prometheus monitoring.
 
 ---
 
@@ -22,10 +23,12 @@ Agro Farm Platform is a **Django-based backend platform** that demonstrates a fu
 agro-farm-platform/
  agro/
  config/
- charts/agro/
+ charts/
+    agro/
  monitoring/
     agro-servicemonitor.yaml
- docs/screenshots/
+ docs/
+    screenshots/
  Dockerfile
  docker-compose.yml
  entrypoint.sh
@@ -42,7 +45,8 @@ docker build -t agro-farm-platform .
 docker run -p 8000:8000 agro-farm-platform
 \\\
 
-Open: http://localhost:8000
+Open in browser:  
+http://localhost:8000
 
 ---
 
@@ -53,7 +57,8 @@ kind create cluster --name agro --config kind-config.yaml
 helm upgrade --install agro charts/agro -n agriculture --create-namespace
 \\\
 
-Check:
+Check pods:
+
 \\\ash
 kubectl get pods -n agriculture
 \\\
@@ -62,7 +67,6 @@ kubectl get pods -n agriculture
 
 ##  Monitoring (Prometheus)
 
-Apply ServiceMonitor:
 \\\ash
 kubectl apply -f monitoring/agro-servicemonitor.yaml
 \\\
@@ -80,10 +84,10 @@ kubectl apply -f monitoring/agro-servicemonitor.yaml
 ### Helm Release
 ![Helm Release](docs/screenshots/helm-release.jpg)
 
-### ServiceMonitor Applied
+### ServiceMonitor
 ![Service Monitor](docs/screenshots/service-monitor.jpg)
 
-### GitHub Actions Pipeline
+### GitHub Actions CI/CD
 ![GitHub Actions](docs/screenshots/github-actions.jpg)
 
 ---
@@ -91,7 +95,7 @@ kubectl apply -f monitoring/agro-servicemonitor.yaml
 ##  CI/CD
 
 GitHub Actions automatically builds and pushes Docker images to
-**GitHub Container Registry (GHCR)**.
+**GitHub Container Registry (GHCR)** on every push to the main branch.
 
 ---
 
